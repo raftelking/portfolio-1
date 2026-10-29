@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Raftel – Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&family=Caveat:wght@500;700&display=swap">
+<style>
+:root{--bg:#eeeeea;--ink:#15171a;--mute:#85877f;--paper:#fbfaf6;--tape:rgba(233,217,138,.7);
+--w:min(44vw,52vh);--h:calc(var(--w)*1.3);--ease:cubic-bezier(.6,.05,.2,1)}
+@media(prefers-color-scheme:dark){:root{--bg:#101112;--ink:#ecebe6;--mute:#80827b}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:14px/1.45 "Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;min-height:100vh}
+header{position:fixed;inset:0 0 auto 0;z-index:5;display:flex;justify-content:space-between;padding:calc(18px + env(safe-area-inset-top,0px)) 24px 18px;background:linear-gradient(var(--bg),transparent)}
+header b{font-weight:800}header nav{display:flex;gap:22px}
+a{color:inherit;text-decoration:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:64px 44px;max-width:1180px;margin:0 auto;padding:110px 32px 90px}
+.cover{cursor:pointer;animation:float 8s ease-in-out infinite;animation-delay:var(--d);background:none;border:0;color:inherit;font:inherit;text-align:left}
+.cover:nth-child(3n+2){margin-top:56px}.cover:nth-child(4n){margin-top:-28px}
+.cover .art{aspect-ratio:var(--r,3/4);background:var(--c);display:flex;align-items:flex-end;padding:12px;color:#f3f1ea;font-weight:800;font-size:19px;line-height:1.05;box-shadow:0 14px 30px -18px rgba(0,0,0,.55);transition:transform .35s var(--ease)}
+.cover:hover .art,.cover:focus-visible .art{transform:translateY(-8px) rotate(-1.5deg)}
+.cover:focus-visible{outline:2px solid var(--ink);outline-offset:6px}
+.cover small{display:block;margin-top:9px;color:var(--mute)}.cover small b{color:var(--ink);font-weight:600}
+.cover.soon{cursor:default}.cover.soon .art{opacity:.55}
+@keyframes float{50%{transform:translateY(-7px)}}
+footer{padding:0 32px 60px;max-width:1180px;margin:auto;color:var(--mute)}
+
+/* book */
+#ov{position:fixed;inset:0;z-index:20;display:none;place-items:center;background:rgba(8,8,7,.88);perspective:2400px}
+#ov.on{display:grid}
+#book{position:relative;width:calc(var(--w)*2);height:var(--h);transform-style:preserve-3d;transition:transform .9s var(--ease)}
+.leaf{position:absolute;left:50%;top:0;width:50%;height:100%;transform-origin:left center;transform-style:preserve-3d;transition:transform 1s var(--ease)}
+.leaf.f{transform:rotateY(-180deg)}
+.face{position:absolute;inset:0;overflow:hidden;backface-visibility:hidden;color:#15171a;
+background:linear-gradient(90deg,rgba(0,0,0,.2),transparent 7%),var(--paper);
+box-shadow:0 20px 50px -20px #000}
+.face.b{transform:rotateY(180deg);background:linear-gradient(270deg,rgba(0,0,0,.2),transparent 7%),var(--paper)}
+.face::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;mix-blend-mode:multiply;
+background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.8' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .45 0 0 0 0 .4 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+.face.hard{background:var(--cc);color:#f3f1ea;padding:9%;display:flex;flex-direction:column;justify-content:space-between}
+.face.hard h2{font-size:calc(var(--w)*.13);line-height:.95;font-weight:800}
+.face.hard p{opacity:.75}
+.it{position:absolute;left:var(--x);top:var(--y);width:var(--wd);transform:rotate(var(--r));opacity:0}
+.show .it{animation:paste .75s cubic-bezier(.2,.9,.3,1.15) both;animation-delay:calc(var(--n)*.16s)}
+@keyframes paste{0%{opacity:0;transform:translateY(-34px) scale(1.3) rotate(calc(var(--r) + 9deg))}55%{opacity:1}100%{opacity:1;transform:rotate(var(--r))}}
+.it.img,.it.imgt,.it.note{background:#fff;padding:6px 6px 8px;box-shadow:0 6px 14px -6px rgba(0,0,0,.45)}
+.it.img::before,.it.imgt::before,.it.note::before{content:"";position:absolute;top:-9px;left:50%;width:42%;height:18px;background:var(--tape);transform:translateX(-50%) rotate(-3deg)}
+.im{aspect-ratio:4/3;width:100%}.imgt .im{aspect-ratio:3/4}
+.it small{display:block;margin-top:5px;font:600 calc(var(--w)*.035)/1.2 "Caveat",cursive;font-size:calc(var(--w)*.05)}
+.it.note{background:#f4eeb0;padding:12px;font:700 calc(var(--w)*.06)/1.15 "Caveat",cursive}
+.it.txt{font-size:calc(var(--w)*.032);line-height:1.4}.it.txt h3{font-size:calc(var(--w)*.1);line-height:.95;font-weight:800;margin-bottom:.4em}
+.ctl{position:fixed;left:0;right:0;bottom:calc(14px + env(safe-area-inset-bottom,0px));display:flex;justify-content:center;gap:10px;align-items:center;color:#d9d7cf}
+.ctl button,#x{background:#1d1e1f;color:#ecebe6;border:1px solid #3a3b3c;border-radius:99px;padding:8px 16px;font:inherit;cursor:pointer}
+.ctl button:focus-visible,#x:focus-visible{outline:2px solid #fff}
+#x{position:fixed;right:18px;top:calc(14px + env(safe-area-inset-top,0px))}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01s!important}.it{opacity:1}}
+</style>
+</head>
+<body>
+<header><b>Raftel</b><nav><a href="#work">Work</a><a href="#about">About</a><a href="mailto:you@example.com">Contact</a></nav></header>
+<main class="grid" id="work"></main>
+<footer id="about">Architecture student and graphic designer, based in Malaysia. Replace this line with your own.</footer>
+
+<div id="ov" role="dialog" aria-label="Project book">
+  <button id="x">Close</button>
+  <div id="book"></div>
+  <div class="ctl"><button id="pv">Back</button><span id="pg"></span><button id="nx">Next</button></div>
+</div>
+
+<script>
+/* ============ EDIT YOUR WORK HERE ============
+ Cover card: {id,title,meta,color,ratio,book?}  (no book = shows as "soon")
+ Page items: [kind, x%, y%, width%, rotation°, text, hue, src]
+   kind: 'img' (landscape photo) | 'imgt' (portrait photo) | 'note' (handwritten) | 'txt' (printed text)
+   src : path to your image, e.g. 'img/site-01.jpg'. Leave empty to show a colour placeholder.
+ Each leaf = [front, back]. A face is an array of items, or {hard:true,title,text} for covers.            */
+const WORK=[
+ {id:'kuantan',title:'Reading Kuantan',meta:'Architecture studio, 2026',color:'#26382f',ratio:'3/4',book:[
+  [{hard:true,title:'Reading Kuantan',text:'Site as generator'},
+   [['txt',12,10,76,0,'<h3>Site as generator</h3>Arked Perniagaan Seri Teruntum, Jalan Teruntum. A project about reading what a place already says before drawing anything.'],
+    ['imgt',14,46,40,-4,'the arcade, morning',150],['note',58,52,32,5,'what stays? what goes?']]],
+  [[['img',10,10,80,-2,'street edge, Jalan Mahkota',200],['img',24,48,66,3,'inside the arcade',30],['note',8,76,40,-4,'light comes from the back']],
+   [['txt',10,8,80,0,'<h3>Layers</h3>Movement, trade, shade and memory, drawn as separate sheets and then stacked.'],['img',8,44,56,2,'atlas sheet 01',170],['img',44,64,48,-3,'atlas sheet 02',260]]],
+  [[['imgt',8,10,42,-3,'model, 1:200',40],['imgt',50,16,42,4,'model detail',190],['note',14,72,50,-2,'cardboard + tracing paper']],
+   [['img',9,8,82,1,'section A-A',210],['txt',10,52,80,0,'Replace this with two or three lines about your idea, your process, and what you learned.']]],
+  [[['img',8,8,84,-1,'final board',160],['note',50,70,40,4,'next: massing studies']],
+   {hard:true,title:'Raftel',text:'Thanks for reading.'}]
+ ]},
+ {id:'a',title:'Alygraph',meta:'Booth and chair concept, in progress',color:'#3a3f6b',ratio:'1/1'},
+ {id:'b',title:'Brawl Stars thumbnails',meta:'Freelance graphic work',color:'#b8892b',ratio:'16/10'},
+ {id:'c',title:'Dhammananda exhibition',meta:'Art direction',color:'#6b2f33',ratio:'3/4'},
+ {id:'d',title:'Farnsworth House',meta:'Tectonic analysis',color:'#2b5560',ratio:'4/5'},
+ {id:'e',title:'Structure journal',meta:'Observation and case study',color:'#4a4a45',ratio:'1/1'}
+];
+
+const $=s=>document.querySelector(s),main=$('.grid'),ov=$('#ov'),bk=$('#book');
+WORK.forEach((p,k)=>{
+ const el=document.createElement('button');el.className='cover'+(p.book?'':' soon');
+ el.style.cssText=`--d:${(k*1.1)%5}s;--c:${p.color};--r:${p.ratio}`;
+ el.innerHTML=`<div class="art">${p.title}</div><small><b>${p.title}</b><br>${p.meta}${p.book?'':'<br>Coming soon'}</small>`;
+ if(p.book)el.onclick=()=>openBook(p);main.append(el)});
+
+let L=[],i=0;
+function item(a,n){const[k,x,y,w,r,t,h,s]=a,d=document.createElement('div');d.className='it '+k;
+ d.style.cssText=`--x:${x}%;--y:${y}%;--wd:${w}%;--r:${r}deg;--n:${n}`;
+ d.innerHTML=k.startsWith('img')?`<div class="im" style="background:${s?`url(${s}) center/cover`:`linear-gradient(135deg,hsl(${h} 22% 72%),hsl(${h+30} 28% 46%))`}"></div><small>${t}</small>`:t;return d}
+function face(f,cls,c){const d=document.createElement('div');d.className='face '+cls;
+ if(f.hard){d.classList.add('hard');d.style.setProperty('--cc',c);d.innerHTML=`<h2>${f.title}</h2><p>${f.text}</p>`}
+ else f.forEach((a,n)=>d.append(item(a,n)));return d}
+function openBook(p){bk.innerHTML='';i=0;
+ L=p.book.map(([f,b])=>{const el=document.createElement('div');el.className='leaf';
+  const fr=face(f,'',p.color),ba=face(b,'b',p.color);el.append(fr,ba);bk.append(el);return{el,fr,ba}});
+ ov.classList.add('on');place();setTimeout(()=>go(1),550);$('#x').focus()}
+function place(){L.forEach((l,k)=>l.el.style.zIndex=k<i?10+k:10+L.length-k);
+ bk.style.transform=i==0?'translateX(-25%)':i==L.length?'translateX(25%)':'none';
+ $('#pg').textContent=i==0?'Cover':i==L.length?'Back cover':`Spread ${i} of ${L.length-1}`}
+function go(n){n=Math.max(0,Math.min(L.length,n));if(n==i)return;
+ const old=i;i=n;
+ L.forEach((l,k)=>{const was=k<old,now=k<i;l.el.classList.toggle('f',now);
+  if(was!=now){l.el.style.zIndex=100;setTimeout(place,1000)}else l.el.style.zIndex=now?10+k:10+L.length-k});
+ bk.style.transform=i==0?'translateX(-25%)':i==L.length?'translateX(25%)':'none';
+ $('#pg').textContent=i==0?'Cover':i==L.length?'Back cover':`Spread ${i} of ${L.length-1}`;
+ [L[i-1]&&L[i-1].ba,L[i]&&L[i].fr].forEach(f=>f&&setTimeout(()=>f.classList.add('show'),450))}
+const close=()=>{ov.classList.remove('on');bk.innerHTML=''};
+$('#nx').onclick=()=>go(i+1);$('#pv').onclick=()=>go(i-1);$('#x').onclick=close;
+bk.onclick=e=>{const r=bk.getBoundingClientRect();go(i==0||e.clientX>r.left+r.width/2?i+1:i-1)};
+ov.onclick=e=>{if(e.target==ov)close()};
+addEventListener('keydown',e=>{if(!ov.classList.contains('on'))return;
+ if(e.key=='ArrowRight')go(i+1);if(e.key=='ArrowLeft')go(i-1);if(e.key=='Escape')close()});
+</script>
+</body>
+</html>
